@@ -1,0 +1,818 @@
+/* ==========================================================================
+   Digital Journal — Personal Diary & Mood Tracking System
+   Custom Design System & Styling
+   Palette: Warm Off-White (#fbfaf8), Muted Lavender (#6e5a9e), Dark Text (#23212b)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Core Color System */
+  --bg-page: #fbfaf8;
+  --bg-surface: #ffffff;
+  --bg-surface-subtle: #f6f4f1;
+  --bg-surface-elevated: #ffffff;
+
+  /* Typography Colors */
+  --text-main: #23212b;
+  --text-muted: #6f6b7d;
+  --text-subtle: #9691a4;
+
+  /* Lavender Accent Brand */
+  --lavender-50: #f7f5fc;
+  --lavender-100: #ede8f8;
+  --lavender-200: #ded5f2;
+  --lavender-300: #c6b6e7;
+  --lavender-500: #7b62aa;
+  --lavender-600: #6a529a;
+  --lavender-700: #584183;
+  --lavender-800: #46336a;
+
+  /* Borders & Dividers */
+  --border-subtle: #ece7e1;
+  --border-focus: #b5a2db;
+
+  /* Mood Palette Colors */
+  --mood-happy-bg: #fff7e6;
+  --mood-happy-text: #945800;
+  --mood-happy-border: #fde1b0;
+
+  --mood-calm-bg: #eaf7f2;
+  --mood-calm-text: #196b53;
+  --mood-calm-border: #b7e8d7;
+
+  --mood-excited-bg: #faeefa;
+  --mood-excited-text: #8c2494;
+  --mood-excited-border: #f0cbf2;
+
+  --mood-sad-bg: #edf3fb;
+  --mood-sad-text: #24588e;
+  --mood-sad-border: #c4dcf8;
+
+  --mood-stressed-bg: #fdf0f0;
+  --mood-stressed-text: #a12b32;
+  --mood-stressed-border: #f8c9cb;
+
+  --mood-grateful-bg: #fbf0f7;
+  --mood-grateful-text: #8d2f6f;
+  --mood-grateful-border: #f3c7e7;
+
+  /* Layout Variables */
+  --sidebar-width: 260px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* Refined Restrained Shadows */
+  --shadow-sm: 0 2px 6px rgba(35, 33, 43, 0.03);
+  --shadow-md: 0 6px 20px rgba(35, 33, 43, 0.04), 0 1px 3px rgba(35, 33, 43, 0.02);
+  --shadow-lg: 0 14px 34px rgba(35, 33, 43, 0.06), 0 3px 8px rgba(35, 33, 43, 0.03);
+}
+
+/* Reset & Base Elements */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: 'Fraunces', Georgia, serif;
+  letter-spacing: -0.015em;
+  color: var(--text-main);
+}
+
+a {
+  color: var(--lavender-600);
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+
+a:hover {
+  color: var(--lavender-800);
+}
+
+/* ==========================================================================
+   Sidebar & App Shell Layout
+   ========================================================================== */
+.app-wrapper {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.app-sidebar {
+  width: var(--sidebar-width);
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1020;
+  transition: transform 0.25s ease-in-out;
+}
+
+.sidebar-header {
+  padding: 1.5rem 1.5rem 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--lavender-700);
+  text-decoration: none;
+}
+
+.brand-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--lavender-100);
+  color: var(--lavender-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+
+.sidebar-nav {
+  padding: 1rem 0.85rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.nav-section-title {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-subtle);
+  padding: 0.75rem 0.75rem 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.65rem 0.85rem;
+  margin-bottom: 0.25rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.93rem;
+  transition: all 0.18s ease;
+  text-decoration: none;
+}
+
+.sidebar-link i {
+  font-size: 1.1rem;
+  width: 22px;
+  text-align: center;
+  color: var(--text-subtle);
+  transition: color 0.18s ease;
+}
+
+.sidebar-link:hover {
+  background: var(--lavender-50);
+  color: var(--lavender-700);
+}
+
+.sidebar-link:hover i {
+  color: var(--lavender-600);
+}
+
+.sidebar-link.active {
+  background: var(--lavender-100);
+  color: var(--lavender-800);
+  font-weight: 600;
+}
+
+.sidebar-link.active i {
+  color: var(--lavender-700);
+}
+
+.sidebar-footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+  background: #faf9fc;
+}
+
+.user-snippet {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  background: var(--lavender-200);
+  color: var(--lavender-800);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.user-meta-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+.user-meta-email {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+/* App Main Content Area */
+.app-main {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  padding: 2rem 2.5rem;
+  min-height: 100vh;
+  max-width: 1400px;
+}
+
+@media (max-width: 991.98px) {
+  .app-sidebar {
+    transform: translateX(-100%);
+  }
+  .app-sidebar.show {
+    transform: translateX(0);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.18);
+  }
+  .app-main {
+    margin-left: 0;
+    padding: 1.25rem;
+  }
+  .sidebar-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(35, 33, 43, 0.4);
+    z-index: 1019;
+  }
+  .sidebar-backdrop.show {
+    display: block;
+  }
+}
+
+/* Mobile Top Bar */
+.mobile-topbar {
+  display: none;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.85rem 1.25rem;
+  position: sticky;
+  top: 0;
+  z-index: 1010;
+}
+
+@media (max-width: 991.98px) {
+  .mobile-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* ==========================================================================
+   Public Site Navbar & Hero (index, login, register)
+   ========================================================================== */
+.public-navbar {
+  background: rgba(251, 250, 248, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.95rem 0;
+}
+
+.hero-section {
+  padding: 5rem 0 3.5rem;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-full);
+  background: var(--lavender-100);
+  color: var(--lavender-800);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--lavender-200);
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.hero-lead {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 540px;
+}
+
+/* ==========================================================================
+   Cards & Content Containers
+   ========================================================================== */
+.card-custom {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-custom:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-custom-elevated {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-card {
+  padding: 1.35rem 1.5rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.stat-value {
+  font-family: 'Fraunces', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.1;
+  margin: 0.25rem 0 0;
+}
+
+.stat-label {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Buttons & Interactive Elements
+   ========================================================================== */
+.btn-lavender {
+  background-color: var(--lavender-600);
+  color: #ffffff;
+  border: 1px solid var(--lavender-600);
+  font-weight: 600;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.18s ease;
+}
+
+.btn-lavender:hover, .btn-lavender:focus {
+  background-color: var(--lavender-700);
+  border-color: var(--lavender-700);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(106, 82, 154, 0.24);
+}
+
+.btn-lavender-subtle {
+  background-color: var(--lavender-100);
+  color: var(--lavender-800);
+  border: 1px solid var(--lavender-200);
+  font-weight: 600;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.18s ease;
+}
+
+.btn-lavender-subtle:hover {
+  background-color: var(--lavender-200);
+  color: var(--lavender-800);
+}
+
+.btn-outline-custom {
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-main);
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 1rem;
+  transition: all 0.18s ease;
+}
+
+.btn-outline-custom:hover {
+  background: var(--bg-surface-subtle);
+  border-color: #d8d3cb;
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   Mood Badges & Selectors
+   ========================================================================== */
+.mood-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.28rem 0.65rem;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+}
+
+.mood-badge.mood-happy {
+  background: var(--mood-happy-bg);
+  color: var(--mood-happy-text);
+  border-color: var(--mood-happy-border);
+}
+
+.mood-badge.mood-calm {
+  background: var(--mood-calm-bg);
+  color: var(--mood-calm-text);
+  border-color: var(--mood-calm-border);
+}
+
+.mood-badge.mood-excited {
+  background: var(--mood-excited-bg);
+  color: var(--mood-excited-text);
+  border-color: var(--mood-excited-border);
+}
+
+.mood-badge.mood-sad {
+  background: var(--mood-sad-bg);
+  color: var(--mood-sad-text);
+  border-color: var(--mood-sad-border);
+}
+
+.mood-badge.mood-stressed {
+  background: var(--mood-stressed-bg);
+  color: var(--mood-stressed-text);
+  border-color: var(--mood-stressed-border);
+}
+
+.mood-badge.mood-grateful {
+  background: var(--mood-grateful-bg);
+  color: var(--mood-grateful-text);
+  border-color: var(--mood-grateful-border);
+}
+
+/* Interactive Mood Selector Pill Grid in Editor */
+.mood-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 0.65rem;
+}
+
+.mood-option-pill {
+  cursor: pointer;
+  border: 1.5px solid var(--border-subtle);
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 0.5rem;
+  text-align: center;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.mood-option-pill:hover {
+  transform: translateY(-2px);
+  border-color: var(--lavender-300);
+}
+
+.mood-option-pill.active {
+  border-color: var(--lavender-600);
+  background: var(--lavender-100);
+  box-shadow: 0 4px 12px rgba(123, 98, 170, 0.15);
+}
+
+.mood-option-emoji {
+  font-size: 1.45rem;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.mood-option-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   Entry Cards & Journal Feed
+   ========================================================================== */
+.entry-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.entry-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--lavender-200);
+}
+
+.entry-date {
+  font-size: 0.82rem;
+  color: var(--text-subtle);
+  font-weight: 500;
+}
+
+.entry-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0.5rem 0 0.5rem;
+  line-height: 1.3;
+}
+
+.entry-preview {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.tag-badge {
+  display: inline-block;
+  font-size: 0.74rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-subtle);
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
+.favorite-star-btn {
+  background: none;
+  border: none;
+  padding: 0.2rem 0.4rem;
+  color: #ccc;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.favorite-star-btn:hover {
+  transform: scale(1.2);
+  color: #e5a100;
+}
+
+.favorite-star-btn.active {
+  color: #f59e0b;
+}
+
+/* ==========================================================================
+   Mood Analytics & Progress Bars
+   ========================================================================== */
+.mood-progress-track {
+  height: 8px;
+  background: var(--bg-surface-subtle);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  margin: 0.5rem 0 1rem;
+}
+
+.mood-progress-item {
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.bg-mood-happy { background-color: #f59e0b; }
+.bg-mood-calm { background-color: #10b981; }
+.bg-mood-excited { background-color: #8b5cf6; }
+.bg-mood-sad { background-color: #3b82f6; }
+.bg-mood-stressed { background-color: #ef4444; }
+.bg-mood-grateful { background-color: #ec4899; }
+
+/* ==========================================================================
+   Calendar Grid System
+   ========================================================================== */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+.calendar-header-day {
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--text-subtle);
+  padding: 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.calendar-cell {
+  min-height: 90px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-cell:hover {
+  background: var(--lavender-50);
+  border-color: var(--lavender-300);
+}
+
+.calendar-cell.other-month {
+  background: #fbfbfb;
+  opacity: 0.45;
+}
+
+.calendar-cell.today {
+  border: 2px solid var(--lavender-500);
+}
+
+.calendar-date-number {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.calendar-entries-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.calendar-entry-pill {
+  font-size: 0.72rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   Form Controls & Polish
+   ========================================================================== */
+.form-control, .form-select {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.62rem 0.85rem;
+  font-size: 0.93rem;
+  color: var(--text-main);
+  background-color: var(--bg-surface);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--lavender-500);
+  box-shadow: 0 0 0 3px rgba(123, 98, 170, 0.15);
+  background-color: #ffffff;
+}
+
+.form-label {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.35rem;
+}
+
+/* ==========================================================================
+   Toast Notification Styling
+   ========================================================================== */
+.toast-container-custom {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1090;
+}
+
+.toast-custom {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-subtle);
+  padding: 0.9rem 1.25rem;
+  margin-top: 0.5rem;
+  min-width: 280px;
+  max-width: 380px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: slideIn 0.25s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Empty State Widget */
+.empty-state {
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+}
+
+.empty-state-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background: var(--lavender-100);
+  color: var(--lavender-700);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.empty-state-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.empty-state-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  max-width: 400px;
+  margin: 0 auto 1.5rem;
+}

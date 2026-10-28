@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Journal — Personal Diary & Mood Tracking System</title>
+  <meta name="description" content="A mindful, secure personal diary with intelligent emotional tracking and daily reflections for modern self-discovery. Built for Web Technology IA3.">
+  
+  <!-- Bootstrap 5 CSS & Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Custom Design System -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Public Header Navigation -->
+  <nav class="navbar navbar-expand-lg public-navbar sticky-top">
+    <div class="container">
+      <a class="brand-badge" href="index.html">
+        <div class="brand-icon-box">
+          <i class="bi bi-journal-bookmark-fill"></i>
+        </div>
+        <span>Digital Journal</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-main fw-medium px-3" href="#features">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-main fw-medium px-3" href="#moods">Mood Tracking</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-main fw-medium px-3" href="#architecture">Architecture</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-main fw-medium px-3" href="#about">About Project</a>
+          </li>
+        </ul>
+        <div class="d-flex align-items-center gap-2">
+          <a href="login.html" class="btn btn-outline-custom">Sign In</a>
+          <a href="register.html" class="btn btn-lavender">Get Started Free</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="hero-pill">
+            <i class="bi bi-stars"></i> Web Technology IA3 University Project
+          </div>
+          <h1 class="hero-title">Your thoughts, measured and treasured.</h1>
+          <p class="hero-lead">
+            A serene personal diary designed to cultivate mindfulness, capture life's meaningful moments, and understand your emotional rhythms with daily mood tracking.
+          </p>
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <a href="register.html" class="btn btn-lavender btn-lg px-4">
+              <i class="bi bi-pencil-square me-2"></i>Start Journaling
+            </a>
+            <a href="login.html" class="btn btn-outline-custom btn-lg px-4">
+              <i class="bi bi-box-arrow-in-right me-2"></i>Access Dashboard
+            </a>
+          </div>
+          <div class="d-flex align-items-center gap-4 mt-5 pt-3 border-top border-light-subtle">
+            <div>
+              <div class="fw-bold fs-5 text-main">100%</div>
+              <small class="text-muted">Private & Secure</small>
+            </div>
+            <div class="vr"></div>
+            <div>
+              <div class="fw-bold fs-5 text-main">6</div>
+              <small class="text-muted">Tracked Moods</small>
+            </div>
+            <div class="vr"></div>
+            <div>
+              <div class="fw-bold fs-5 text-main">MongoDB</div>
+              <small class="text-muted">Persistent Store</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <!-- Interactive Mockup Preview Card -->
+          <div class="card-custom p-4 shadow-lg position-relative" style="border-radius: var(--radius-lg);">
+            <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-light text-muted border">Today's Reflection</span>
+                <span class="text-muted" style="font-size: 0.82rem;">October 28, 2026</span>
+              </div>
+              <span class="mood-badge mood-grateful">🌸 Grateful</span>
+            </div>
+            <h4 class="mb-2 font-serif">Finding clarity through morning stillness</h4>
+            <p class="text-muted" style="font-size: 0.95rem; line-height: 1.65;">
+              Woke up before the sun today. The city was still quiet, and I had forty uninterrupted minutes with a warm mug of tea and my thoughts. It is amazing how writing down small things clears away background anxiety. Today feels grounded and full of promise...
+            </p>
+            <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+              <div class="d-flex gap-1">
+                <span class="tag-badge">#mindfulness</span>
+                <span class="tag-badge">#tea</span>
+                <span class="tag-badge">#morning</span>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-star-fill text-warning"></i>
+                <small class="text-muted">68 words</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-5" id="features" style="background: var(--bg-surface-subtle);">
+    <div class="container py-4">
+      <div class="text-center max-w-700 mx-auto mb-5">
+        <h6 class="text-uppercase text-muted fw-bold letter-spacing-1" style="font-size: 0.8rem;">Thoughtful Capabilities</h6>
+        <h2 class="font-serif fs-1">Everything you need for reflective writing</h2>
+        <p class="text-muted">Crafted with full-stack Node.js, Express, MongoDB, and Bootstrap 5.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="card-custom p-4 h-100">
+            <div class="brand-icon-box mb-3" style="width: 48px; height: 48px; font-size: 1.4rem;">
+              <i class="bi bi-pencil-fill"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Rich Daily Journaling</h5>
+            <p class="text-muted mb-0">Write, edit, and organize reflections with live word counts, character limits, customizable tags, and reading estimates.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card-custom p-4 h-100">
+            <div class="brand-icon-box mb-3" style="width: 48px; height: 48px; font-size: 1.4rem; background: #eaf7f2; color: #196b53;">
+              <i class="bi bi-emoji-smile-fill"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Emotional Mood Tracking</h5>
+            <p class="text-muted mb-0">Associate every entry with one of six distinct mood states. View dynamic distribution charts computed straight from your database records.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card-custom p-4 h-100">
+            <div class="brand-icon-box mb-3" style="width: 48px; height: 48px; font-size: 1.4rem; background: #edf3fb; color: #24588e;">
+              <i class="bi bi-calendar3"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Interactive Calendar Grid</h5>
+            <p class="text-muted mb-0">Browse through your writing history visually. Click on any date in the calendar to see all reflections and memories penned on that day.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card-custom p-4 h-100">
+            <div class="brand-icon-box mb-3" style="width: 48px; height: 48px; font-size: 1.4rem; background: #fbf0f7; color: #8d2f6f;">
+              <i class="bi bi-funnel-fill"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Search & Multi-Filtering</h5>
+            <p class="text-muted mb-0">Find thoughts in seconds. Filter by specific moods, favorite stars, custom tags, or date ranges, or execute text queries across all entries.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card-custom p-4 h-100">
+            <div class="brand-icon-box mb-3" style="width: 48px; height: 48px; font-size: 1.4rem; background: #fff7e6; color: #945800;">
+              <i class="bi bi-shield-lock-fill"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Strict Session Security</h5>
+            <p class="text-muted mb-0">Protected by bcryptjs password hashing, authenticated session cookies with connect-mongo, and server-side authorization enforcement.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card-custom p-4 h-100">
+            <div class="brand-icon-box mb-3" style="width: 48px; height: 48px; font-size: 1.4rem; background: #faeefa; color: #8c2494;">
+              <i class="bi bi-speedometer2"></i>
+            </div>
+            <h5 class="fw-bold mb-2">Real-Time Analytics</h5>
+            <p class="text-muted mb-0">Monitor total entries written, today's reflections count, all-time word counts, and your most dominant emotional state without page reloads.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mood Tracking Showcase -->
+  <section class="py-5" id="moods">
+    <div class="container py-4">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5">
+          <h6 class="text-uppercase text-muted fw-bold letter-spacing-1" style="font-size: 0.8rem;">Emotional Well-Being</h6>
+          <h2 class="font-serif fs-1 mb-3">Six moods to chronicle your journey</h2>
+          <p class="text-muted mb-4">
+            Emotions are nuanced. By pairing each journal entry with your internal weather, Digital Journal reveals patterns in your daily life over weeks and months.
+          </p>
+          <div class="d-flex flex-column gap-2">
+            <div class="p-3 card-custom d-flex align-items-center justify-content-between">
+              <span>😊 <strong>Happy</strong> — Celebrations, wins, and pure joy</span>
+              <span class="badge bg-warning-subtle text-warning-emphasis">Positive</span>
+            </div>
+            <div class="p-3 card-custom d-flex align-items-center justify-content-between">
+              <span>🌿 <strong>Calm</strong> — Peaceful reflection and quiet balance</span>
+              <span class="badge bg-success-subtle text-success-emphasis">Mindful</span>
+            </div>
+            <div class="p-3 card-custom d-flex align-items-center justify-content-between">
+              <span>⚡ <strong>Excited</strong> — Anticipation, energy, and milestones</span>
+              <span class="badge bg-purple-subtle text-purple" style="background:#faeefa; color:#8c2494;">High Energy</span>
+            </div>
+            <div class="p-3 card-custom d-flex align-items-center justify-content-between">
+              <span>🌸 <strong>Grateful</strong> — Appreciation for people and moments</span>
+              <span class="badge" style="background:#fbf0f7; color:#8d2f6f;">Reflective</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="p-4 p-md-5 card-custom" style="border-radius: var(--radius-lg); background: var(--lavender-50);">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h5 class="font-serif mb-0">Interactive Mood Palette</h5>
+              <span class="badge bg-white text-muted border">Live Feedback</span>
+            </div>
+            <p class="text-muted mb-4">Click any mood below to preview how it integrates into your journal entries:</p>
+
+            <div class="mood-selector-grid mb-4" id="demoMoodSelector">
+              <div class="mood-option-pill" onclick="demoSelectMood('Happy', '😊', 'Celebrated finishing my IA3 submission early today!')">
+                <span class="mood-option-emoji">😊</span>
+                <span class="mood-option-label">Happy</span>
+              </div>
+              <div class="mood-option-pill active" onclick="demoSelectMood('Calm', '🌿', 'Enjoyed an evening walk listening to rainfall.')">
+                <span class="mood-option-emoji">🌿</span>
+                <span class="mood-option-label">Calm</span>
+              </div>
+              <div class="mood-option-pill" onclick="demoSelectMood('Excited', '⚡', 'Received an internship offer from my dream team!')">
+                <span class="mood-option-emoji">⚡</span>
+                <span class="mood-option-label">Excited</span>
+              </div>
+              <div class="mood-option-pill" onclick="demoSelectMood('Sad', '🌧️', 'Feeling a bit drained after midterms, taking it easy.')">
+                <span class="mood-option-emoji">🌧️</span>
+                <span class="mood-option-label">Sad</span>
+              </div>
+              <div class="mood-option-pill" onclick="demoSelectMood('Stressed', '🌪️', 'Long backlog of deadlines, organizing tasks one by one.')">
+                <span class="mood-option-emoji">🌪️</span>
+                <span class="mood-option-label">Stressed</span>
+              </div>
+              <div class="mood-option-pill" onclick="demoSelectMood('Grateful', '🌸', 'Thankful for my supportive family and friends.')">
+                <span class="mood-option-emoji">🌸</span>
+                <span class="mood-option-label">Grateful</span>
+              </div>
+            </div>
+
+            <div class="card-custom p-4 bg-white" id="demoPreviewCard">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-muted" style="font-size: 0.8rem;">Sample Preview Entry</span>
+                <span id="demoMoodBadge" class="mood-badge mood-calm">🌿 Calm</span>
+              </div>
+              <h6 class="fw-bold mb-2" id="demoTitle">Evening Reflection</h6>
+              <p class="text-muted mb-0" id="demoText" style="font-size: 0.9rem;">
+                Enjoyed an evening walk listening to rainfall. Taking time to pause and disconnect restores mental clarity.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Academic Project Section -->
+  <section class="py-5" id="architecture" style="background: var(--bg-surface-subtle);">
+    <div class="container py-4">
+      <div class="text-center max-w-700 mx-auto mb-5">
+        <h6 class="text-uppercase text-muted fw-bold letter-spacing-1" style="font-size: 0.8rem;">Academic Submission Details</h6>
+        <h2 class="font-serif fs-1">Full-Stack Architecture & Technology</h2>
+        <p class="text-muted">Developed as an individual project for Web Technology IA3.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-3">
+          <div class="card-custom p-4 text-center h-100">
+            <i class="bi bi-filetype-html text-danger fs-1 mb-2"></i>
+            <h6 class="fw-bold">Frontend Tier</h6>
+            <p class="text-muted" style="font-size: 0.85rem;">HTML5, CSS3, JavaScript ES6+, Bootstrap 5, Custom CSS Tokens.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card-custom p-4 text-center h-100">
+            <i class="bi bi-hdd-network text-success fs-1 mb-2"></i>
+            <h6 class="fw-bold">Backend Server</h6>
+            <p class="text-muted" style="font-size: 0.85rem;">Node.js runtime, Express.js REST API with rate-limiting & modular routing.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card-custom p-4 text-center h-100">
+            <i class="bi bi-database-fill text-warning fs-1 mb-2"></i>
+            <h6 class="fw-bold">Database & Models</h6>
+            <p class="text-muted" style="font-size: 0.85rem;">MongoDB with Mongoose schemas, compound indexes, and aggregation pipelines.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card-custom p-4 text-center h-100">
+            <i class="bi bi-key-fill text-info fs-1 mb-2"></i>
+            <h6 class="fw-bold">Security & Sessions</h6>
+            <p class="text-muted" style="font-size: 0.85rem;">Express sessions stored in MongoDB via connect-mongo, salted bcryptjs hashing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Banner -->
+  <section class="py-5 text-center" id="about">
+    <div class="container py-4">
+      <div class="p-5 card-custom" style="background: var(--lavender-100); border-radius: var(--radius-lg); border-color: var(--lavender-200);">
+        <h2 class="font-serif fs-1 mb-3">Begin your daily mindful practice</h2>
+        <p class="text-muted mb-4 max-w-600 mx-auto">
+          Create your private account in thirty seconds and unlock a calm, distraction-free space for your thoughts.
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="register.html" class="btn btn-lavender btn-lg px-4">Register New Account</a>
+          <a href="login.html" class="btn btn-outline-custom btn-lg px-4">Sign In</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 border-top bg-white">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <div class="d-flex align-items-center gap-2">
+        <span class="brand-badge fs-6">
+          <div class="brand-icon-box" style="width:26px; height:26px; font-size:0.85rem;">
+            <i class="bi bi-journal-bookmark-fill"></i>
+          </div>
+          <span>Digital Journal</span>
+        </span>
+        <span class="text-muted" style="font-size: 0.85rem;">&bull; Web Technology IA3 Evaluation</span>
+      </div>
+      <div class="text-muted" style="font-size: 0.85rem;">
+        Designed & Built with Node.js, Express, MongoDB & Bootstrap 5
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function demoSelectMood(mood, emoji, text) {
+      document.querySelectorAll('#demoMoodSelector .mood-option-pill').forEach(p => p.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      const badge = document.getElementById('demoMoodBadge');
+      badge.className = `mood-badge mood-${mood.toLowerCase()}`;
+      badge.innerHTML = `${emoji} ${mood}`;
+      document.getElementById('demoTitle').textContent = `${mood} Reflection`;
+      document.getElementById('demoText').textContent = text;
+    }
+  </script>
+</body>
+</html>

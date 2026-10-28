@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal Editor — Digital Journal</title>
+  <meta name="description" content="Compose, reflect, and capture your day with mood tagging and rich journaling.">
+
+  <!-- Bootstrap 5 CSS & Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Custom Design System -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Mobile Topbar -->
+  <div class="mobile-topbar">
+    <a class="brand-badge" href="dashboard.html">
+      <div class="brand-icon-box" style="width:30px; height:30px; font-size:0.95rem;">
+        <i class="bi bi-journal-bookmark-fill"></i>
+      </div>
+      <span>Digital Journal</span>
+    </a>
+    <button id="mobileSidebarToggle" class="btn btn-outline-custom p-1 px-2" aria-label="Toggle Navigation">
+      <i class="bi bi-list fs-4"></i>
+    </button>
+  </div>
+
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <div class="app-wrapper">
+    <!-- Desktop Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a class="brand-badge" href="dashboard.html">
+          <div class="brand-icon-box">
+            <i class="bi bi-journal-bookmark-fill"></i>
+          </div>
+          <span>Digital Journal</span>
+        </a>
+      </div>
+
+      <div class="sidebar-nav">
+        <div class="nav-section-title">Menu</div>
+        <a href="dashboard.html" class="sidebar-link">
+          <i class="bi bi-speedometer2"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="editor.html" class="sidebar-link active">
+          <i class="bi bi-pencil-square"></i>
+          <span>New Entry</span>
+        </a>
+        <a href="entries.html" class="sidebar-link">
+          <i class="bi bi-journal-text"></i>
+          <span>All Entries</span>
+        </a>
+        <a href="calendar.html" class="sidebar-link">
+          <i class="bi bi-calendar3"></i>
+          <span>Calendar</span>
+        </a>
+
+        <div class="nav-section-title">Account</div>
+        <a href="profile.html" class="sidebar-link">
+          <i class="bi bi-person-gear"></i>
+          <span>Profile & Settings</span>
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="user-snippet">
+            <div class="user-avatar" id="sidebarUserAvatar">U</div>
+            <div>
+              <div class="user-meta-name" id="sidebarUserName">Loading...</div>
+              <div class="user-meta-email" id="sidebarUserEmail">...</div>
+            </div>
+          </div>
+          <button class="btn btn-sm btn-outline-custom p-1 px-2 text-muted" data-action="logout" title="Sign Out">
+            <i class="bi bi-box-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <div class="max-w-900 mx-auto">
+        <!-- Breadcrumb & Header -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+          <div>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb mb-1" style="font-size: 0.85rem;">
+                <li class="breadcrumb-item"><a href="dashboard.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="entries.html">Entries</a></li>
+                <li class="breadcrumb-item active" id="editorBreadcrumb" aria-current="page">New Entry</li>
+              </ol>
+            </nav>
+            <h1 class="h2 mb-0" id="editorPageTitle">Write a Reflection</h1>
+          </div>
+          <div class="d-flex gap-2">
+            <button type="button" id="deleteEntryBtn" class="btn btn-outline-danger d-none">
+              <i class="bi bi-trash me-1"></i> Delete Entry
+            </button>
+            <a href="entries.html" class="btn btn-outline-custom">Cancel</a>
+          </div>
+        </div>
+
+        <!-- Editor Form Card -->
+        <div class="card-custom p-4 p-md-5 mb-5">
+          <form id="journalEntryForm" novalidate>
+            <!-- Title & Date Row -->
+            <div class="row g-3 mb-4">
+              <div class="col-md-8">
+                <div class="d-flex justify-content-between align-items-center">
+                  <label for="entryTitle" class="form-label">Entry Title <span class="text-danger">*</span></label>
+                  <span id="titleCharCount" class="text-muted" style="font-size: 0.78rem;">0/120</span>
+                </div>
+                <input type="text" class="form-control form-control-lg fs-5 font-serif" id="entryTitle" placeholder="e.g., Morning Thoughts by the Window" maxlength="120" required>
+              </div>
+
+              <div class="col-md-4">
+                <label for="entryDate" class="form-label">Entry Date</label>
+                <input type="date" class="form-control" id="entryDate" required>
+              </div>
+            </div>
+
+            <!-- Mood Selector Section -->
+            <div class="mb-4">
+              <label class="form-label d-block">How are you feeling right now? <span class="text-danger">*</span></label>
+              <div class="mood-selector-grid">
+                <div class="mood-option-pill" data-mood="Happy">
+                  <span class="mood-option-emoji">😊</span>
+                  <span class="mood-option-label">Happy</span>
+                </div>
+                <div class="mood-option-pill active" data-mood="Calm">
+                  <span class="mood-option-emoji">🌿</span>
+                  <span class="mood-option-label">Calm</span>
+                </div>
+                <div class="mood-option-pill" data-mood="Excited">
+                  <span class="mood-option-emoji">⚡</span>
+                  <span class="mood-option-label">Excited</span>
+                </div>
+                <div class="mood-option-pill" data-mood="Sad">
+                  <span class="mood-option-emoji">🌧️</span>
+                  <span class="mood-option-label">Sad</span>
+                </div>
+                <div class="mood-option-pill" data-mood="Stressed">
+                  <span class="mood-option-emoji">🌪️</span>
+                  <span class="mood-option-label">Stressed</span>
+                </div>
+                <div class="mood-option-pill" data-mood="Grateful">
+                  <span class="mood-option-emoji">🌸</span>
+                  <span class="mood-option-label">Grateful</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Journal Content Area -->
+            <div class="mb-3">
+              <label for="entryContent" class="form-label">Journal Content <span class="text-danger">*</span></label>
+              <textarea class="form-control font-sans" id="entryContent" rows="12" placeholder="Pour your thoughts freely onto this page. What is occupying your mind today? What moments brought you peace or challenge?" required style="line-height: 1.7; font-size: 1rem;"></textarea>
+            </div>
+
+            <!-- Live Writing Metrics Bar -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 p-2 px-3 rounded-2" style="background: var(--bg-surface-subtle); font-size: 0.82rem; color: var(--text-muted);">
+              <div class="d-flex gap-3">
+                <span id="liveWordCount"><i class="bi bi-fonts me-1"></i>0 words</span>
+                <span id="liveCharCount">0 characters</span>
+              </div>
+              <div id="liveReadTime"><i class="bi bi-clock me-1"></i>0 min read</div>
+            </div>
+
+            <!-- Tags & Favorite Row -->
+            <div class="row g-3 mb-4">
+              <div class="col-md-8">
+                <label for="entryTags" class="form-label">Tags (Optional)</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-white text-muted"><i class="bi bi-tags"></i></span>
+                  <input type="text" class="form-control" id="entryTags" placeholder="e.g. mindfulness, college, books, travel (comma separated)">
+                </div>
+                <small class="text-muted" style="font-size: 0.78rem;">Separate tags with commas.</small>
+              </div>
+
+              <div class="col-md-4 d-flex align-items-end">
+                <button type="button" id="favoriteToggleBtn" class="btn btn-outline-custom w-100 py-2">
+                  <i class="bi bi-star me-1"></i> Add to Favorites
+                </button>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- Submit Button Bar -->
+            <div class="d-flex justify-content-end gap-2">
+              <a href="entries.html" class="btn btn-outline-custom px-4">Discard</a>
+              <button type="submit" class="btn btn-lavender px-5 py-2">
+                <i class="bi bi-check2-circle me-1"></i> Save Entry
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header border-bottom-0 pb-0">
+          <h5 class="modal-title font-serif text-danger" id="deleteModalTitle">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>Delete Journal Entry
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-3">
+          <p class="text-muted mb-0">
+            Are you sure you want to permanently delete this journal entry? This action cannot be undone.
+          </p>
+        </div>
+        <div class="modal-footer border-top-0 pt-0">
+          <button type="button" class="btn btn-outline-custom" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete Entry</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/editor.js"></script>
+</body>
+</html>

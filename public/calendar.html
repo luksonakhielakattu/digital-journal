@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar History — Digital Journal</title>
+  <meta name="description" content="Explore your journal entries and moods chronologically across a visual calendar grid.">
+
+  <!-- Bootstrap 5 CSS & Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Custom Design System -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Mobile Topbar -->
+  <div class="mobile-topbar">
+    <a class="brand-badge" href="dashboard.html">
+      <div class="brand-icon-box" style="width:30px; height:30px; font-size:0.95rem;">
+        <i class="bi bi-journal-bookmark-fill"></i>
+      </div>
+      <span>Digital Journal</span>
+    </a>
+    <button id="mobileSidebarToggle" class="btn btn-outline-custom p-1 px-2" aria-label="Toggle Navigation">
+      <i class="bi bi-list fs-4"></i>
+    </button>
+  </div>
+
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <div class="app-wrapper">
+    <!-- Desktop Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a class="brand-badge" href="dashboard.html">
+          <div class="brand-icon-box">
+            <i class="bi bi-journal-bookmark-fill"></i>
+          </div>
+          <span>Digital Journal</span>
+        </a>
+      </div>
+
+      <div class="sidebar-nav">
+        <div class="nav-section-title">Menu</div>
+        <a href="dashboard.html" class="sidebar-link">
+          <i class="bi bi-speedometer2"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="editor.html" class="sidebar-link">
+          <i class="bi bi-pencil-square"></i>
+          <span>New Entry</span>
+        </a>
+        <a href="entries.html" class="sidebar-link">
+          <i class="bi bi-journal-text"></i>
+          <span>All Entries</span>
+        </a>
+        <a href="calendar.html" class="sidebar-link active">
+          <i class="bi bi-calendar3"></i>
+          <span>Calendar</span>
+        </a>
+
+        <div class="nav-section-title">Account</div>
+        <a href="profile.html" class="sidebar-link">
+          <i class="bi bi-person-gear"></i>
+          <span>Profile & Settings</span>
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="user-snippet">
+            <div class="user-avatar" id="sidebarUserAvatar">U</div>
+            <div>
+              <div class="user-meta-name" id="sidebarUserName">Loading...</div>
+              <div class="user-meta-email" id="sidebarUserEmail">...</div>
+            </div>
+          </div>
+          <button class="btn btn-sm btn-outline-custom p-1 px-2 text-muted" data-action="logout" title="Sign Out">
+            <i class="bi bi-box-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+          <h1 class="h2 mb-1">Calendar Journey</h1>
+          <p class="text-muted mb-0">Revisit memories and emotional rhythms day by day.</p>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn btn-outline-custom" id="prevMonthBtn" title="Previous Month">
+            <i class="bi bi-chevron-left"></i>
+          </button>
+          <button class="btn btn-outline-custom px-3" id="todayBtn">Today</button>
+          <button class="btn btn-outline-custom" id="nextMonthBtn" title="Next Month">
+            <i class="bi bi-chevron-right"></i>
+          </button>
+          <a href="editor.html" class="btn btn-lavender ms-2">
+            <i class="bi bi-pencil-square me-1"></i> New Entry
+          </a>
+        </div>
+      </div>
+
+      <!-- Calendar Container Card -->
+      <div class="card-custom p-3 p-md-4 mb-4">
+        <!-- Month Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+          <h3 class="font-serif mb-0 fs-3" id="calendarMonthTitle">Month Year</h3>
+          <div class="d-flex align-items-center gap-3 text-muted small">
+            <span class="d-inline-flex align-items-center gap-1">
+              <span class="d-inline-block rounded-circle bg-primary" style="width:8px; height:8px;"></span> Today
+            </span>
+            <span class="d-inline-flex align-items-center gap-1">
+              <span class="d-inline-block rounded-circle" style="width:8px; height:8px; background:var(--lavender-500);"></span> Reflections Recorded
+            </span>
+          </div>
+        </div>
+
+        <!-- 7-Column Days Header -->
+        <div class="calendar-grid mb-2">
+          <div class="calendar-header-day text-danger">Sun</div>
+          <div class="calendar-header-day">Mon</div>
+          <div class="calendar-header-day">Tue</div>
+          <div class="calendar-header-day">Wed</div>
+          <div class="calendar-header-day">Thu</div>
+          <div class="calendar-header-day">Fri</div>
+          <div class="calendar-header-day text-primary">Sat</div>
+        </div>
+
+        <!-- Days Cells Grid -->
+        <div class="calendar-grid" id="calendarDaysGrid">
+          <!-- Dynamically generated by calendar.js -->
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Day Entries Modal -->
+  <div class="modal fade" id="calendarDayModal" tabindex="-1" aria-labelledby="modalCalendarDayTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title font-serif" id="modalCalendarDayTitle">Date Reflections</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4" id="modalCalendarEntriesList">
+          <!-- Dynamically populated -->
+        </div>
+        <div class="modal-footer border-top d-flex justify-content-between">
+          <a href="#" class="btn btn-sm btn-lavender" id="modalAddEntryForDateBtn">
+            <i class="bi bi-pencil-plus me-1"></i> Add Entry For This Day
+          </a>
+          <button type="button" class="btn btn-sm btn-outline-custom" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/calendar.js"></script>
+</body>
+</html>
