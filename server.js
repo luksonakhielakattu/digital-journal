@@ -99,6 +99,18 @@ app.use(
   })
 );
 
+// Ensure MongoDB is connected on demand for serverless invocations (Vercel)
+app.use(async (req, res, next) => {
+  if (mongoose.connection.readyState !== 1) {
+    try {
+      await connectDB();
+    } catch (err) {
+      console.error('[Database] Serverless auto-connect error:', err.message);
+    }
+  }
+  next();
+});
+
 // Serve static frontend files
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -193,4 +205,9 @@ if (require.main === module) {
   });
 }
 
-module.exports = { app, connectDB, mongoose, sessionStore };
+// Export Express app as callable handler for Vercel Serverless and retain properties for tests
+app.app = app;
+app.connectDB = connectDB;
+app.mongoose = mongoose;
+app.sessionStore = sessionStore;
+module.exports = app;

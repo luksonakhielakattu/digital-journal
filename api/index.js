@@ -1,14 +1,7 @@
 /**
  * Vercel Serverless Function Handler
- * Routes all API calls through the Express app and ensures active MongoDB connection.
+ * Seamlessly delegates all requests to the Express application in server.js
  */
-const { app, connectDB } = require('../server');
+const app = require('../server');
 
-module.exports = async (req, res) => {
-  try {
-    await connectDB();
-  } catch (err) {
-    console.error('[Vercel Serverless] Database connection error:', err);
-  }
-  return app(req, res);
-};
+module.exports = app;
